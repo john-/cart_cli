@@ -5,7 +5,7 @@ use Data::Dumper;
 use feature say;
 use File::Slurp;
 use Time::Piece;
-#use SQL::Abstract;
+use FindBin qw($Bin);;
 
 sub new {
     my $class = shift;
@@ -14,7 +14,7 @@ sub new {
         dbh => DBI->connect(
             "dbi:Pg:dbname=cart", 'script', '', { AutoCommit => 1 }
         ),
-        config => eval( read_file('../conf/cart_cli.conf') ),
+        config => eval( read_file("$Bin/../conf/cart_cli.conf") ),
     };
     bless( $self, $class );
     return ($self);
